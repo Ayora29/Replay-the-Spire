@@ -15,8 +15,8 @@ import java.util.*;
 import com.megacrit.cardcrawl.core.*;
 public class UnExhaustAction extends AbstractGameAction
 {
-    private AbstractPlayer p;
-    private AbstractCard c;
+    private final AbstractPlayer p;
+    private final AbstractCard c;
     
     public UnExhaustAction(final AbstractCard c) {
         this.c = c;

@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 public class EclipseSecondAction extends AbstractGameAction
 {
-    private int count;
-    private float startingDuration;
+    private final int count;
+    private final float startingDuration;
     
     public EclipseSecondAction(final int count) {
         this.count = count;

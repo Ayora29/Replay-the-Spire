@@ -10,7 +10,7 @@ public class RenderHandPatch {
 	public static boolean plsDontRenderHand = false;
 	public static SpireReturn Prefix(final AbstractPlayer __instance, final SpriteBatch sb) {
 		if (plsDontRenderHand) {
-			return SpireReturn.Return((Object)null);
+			return SpireReturn.Return(null);
 		}
 		return SpireReturn.Continue();
 	}

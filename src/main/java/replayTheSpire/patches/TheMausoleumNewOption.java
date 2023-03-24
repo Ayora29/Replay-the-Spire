@@ -34,7 +34,7 @@ public class TheMausoleumNewOption
     {
         public static void Postfix(final TheMausoleum __instance) {
             if (AbstractDungeon.eventRng.random(2) > 0) {
-                __instance.imageEventText.updateDialogOption(0, TheMausoleumNewOption.eventStrings.OPTIONS[0] + (int)ReflectionHacks.getPrivate((Object)__instance, (Class)TheMausoleum.class, "percent") + TheMausoleumNewOption.eventStrings.OPTIONS[1]);
+                __instance.imageEventText.updateDialogOption(0, TheMausoleumNewOption.eventStrings.OPTIONS[0] + ReflectionHacks.getPrivate(__instance, TheMausoleum.class, "percent") + TheMausoleumNewOption.eventStrings.OPTIONS[1]);
                 TheMausoleumNewOption.isUsingOption = true;
             }
             else {
@@ -47,10 +47,10 @@ public class TheMausoleumNewOption
     public static class ChangeOptionEffect
     {
         public static SpireReturn Prefix(final TheMausoleum __instance, final int buttonPressed) {
-        	if (ReflectionHacks.getPrivate((Object)__instance, (Class)TheMausoleum.class, "screen") == null) {
+        	if (ReflectionHacks.getPrivate(__instance, TheMausoleum.class, "screen") == null) {
         		AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
                 AbstractDungeon.dungeonMapScreen.open(false);
-        		return SpireReturn.Return((Object)null);
+        		return SpireReturn.Return(null);
         	}
             if (TheMausoleumNewOption.isUsingOption && buttonPressed == 0) {
             	boolean result = AbstractDungeon.eventRng.randomBoolean();
@@ -73,8 +73,8 @@ public class TheMausoleumNewOption
 
                 __instance.imageEventText.clearAllDialogs();
                 __instance.imageEventText.setDialogOption(TheMausoleum.OPTIONS[2]);
-                ReflectionHacks.setPrivate((Object)__instance, (Class)TheMausoleum.class, "screen", (Object)null);
-                return SpireReturn.Return((Object)null);
+                ReflectionHacks.setPrivate(__instance, TheMausoleum.class, "screen", null);
+                return SpireReturn.Return(null);
             }
             TheMausoleumNewOption.isUsingOption = false;
             return SpireReturn.Continue();

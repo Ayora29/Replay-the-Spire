@@ -12,11 +12,11 @@ public class ColorSmokeBlur extends AbstractGameEffect
 {
     private float x;
     private float y;
-    private float vY;
-    private float aV;
-    private float startDur;
-    private float targetScale;
-    private TextureAtlas.AtlasRegion img;
+    private final float vY;
+    private final float aV;
+    private final float startDur;
+    private final float targetScale;
+    private final TextureAtlas.AtlasRegion img;
     
     public ColorSmokeBlur(final float x, final float y, Color color) {
         this.color = color.cpy();

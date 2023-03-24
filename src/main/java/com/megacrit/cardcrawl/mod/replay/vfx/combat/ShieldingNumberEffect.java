@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.*;
 
 public class ShieldingNumberEffect extends DamageNumberEffect
 {
-    private Color originalColor;
+    private final Color originalColor;
     
     public ShieldingNumberEffect(final AbstractCreature target, final float x, final float y, final int amt) {
         super(target, x, y, amt);

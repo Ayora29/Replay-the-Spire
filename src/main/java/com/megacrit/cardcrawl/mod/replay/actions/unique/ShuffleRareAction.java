@@ -41,12 +41,7 @@ public class ShuffleRareAction extends AbstractGameAction
                 final AbstractCard e = c.next();
 				if (e.rarity == AbstractCard.CardRarity.RARE) {
 					c.remove();
-					if (this.count < 11) {
-						AbstractDungeon.getCurrRoom().souls.shuffle(e, false);
-					}
-					else {
-						AbstractDungeon.getCurrRoom().souls.shuffle(e, true);
-					}
+                    AbstractDungeon.getCurrRoom().souls.shuffle(e, this.count >= 11);
 	                return;
 				}
             }

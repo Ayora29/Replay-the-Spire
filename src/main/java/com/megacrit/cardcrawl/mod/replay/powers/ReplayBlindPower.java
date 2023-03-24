@@ -47,7 +47,7 @@ public class ReplayBlindPower extends AbstractPower implements CloneablePowerInt
     		this.card = c;
     		this.name = c.name;
     		this.desc = c.rawDescription;
-    		this.SetTexture("cards/replay/replayBetaAttack.png", true);
+    		this.SetTexture("replay/images/cards/replayBetaAttack.png", true);
     		this.card.name = "???";
     		this.card.rawDescription = ReplayBlindPower.DESCRIPTIONS[2];
     		this.card.initializeDescription();
@@ -89,7 +89,7 @@ public class ReplayBlindPower extends AbstractPower implements CloneablePowerInt
     	}
     }
     
-    private ArrayList<BlindSavedCard> savedcards;
+    private final ArrayList<BlindSavedCard> savedcards;
     private boolean justApplied;
     
     public ReplayBlindPower(final AbstractCreature owner, final int amount) {

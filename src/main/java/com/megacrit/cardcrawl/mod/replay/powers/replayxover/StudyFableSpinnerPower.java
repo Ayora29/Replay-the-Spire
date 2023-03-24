@@ -26,7 +26,7 @@ public class StudyFableSpinnerPower extends AbstractPower
         this.ID = POWER_ID;
         this.owner = owner;
         this.upgrade = upgrade;
-        this.img = new Texture("images/powers/32/knowledge.png");
+        this.img = new Texture("replay/images/powers/knowledge.png");
         this.amount = amount;
         this.updateDescription();
     }

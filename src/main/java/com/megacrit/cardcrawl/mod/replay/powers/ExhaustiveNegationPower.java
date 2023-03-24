@@ -31,10 +31,10 @@ public class ExhaustiveNegationPower extends AbstractPower
     public void onSpecificTrigger() {
         this.flash();
         if (this.amount <= 0) {
-            AbstractDungeon.actionManager.addToTop((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
+            AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
         }
         else {
-            AbstractDungeon.actionManager.addToTop((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, this.ID, 1));
+            AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, this.ID, 1));
         }
     }
     

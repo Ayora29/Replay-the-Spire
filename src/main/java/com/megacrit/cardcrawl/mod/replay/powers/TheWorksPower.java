@@ -1,5 +1,6 @@
 package com.megacrit.cardcrawl.mod.replay.powers;
 
+import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.unique.SwordBoomerangAction;
@@ -9,15 +10,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.mod.replay.actions.common.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
-import basemod.interfaces.CloneablePowerInterface;
-
-public class TheWorksPower extends AbstractPower implements CloneablePowerInterface
-{
+public class TheWorksPower extends AbstractPower implements CloneablePowerInterface {
     public static final String POWER_ID = "The Works";
     private static final PowerStrings powerStrings;
     public static final String NAME;
@@ -30,6 +25,7 @@ public class TheWorksPower extends AbstractPower implements CloneablePowerInterf
     public TheWorksPower(final AbstractCreature owner, final int damage) {
         this(owner, damage, 1);
     }
+
     public TheWorksPower(final AbstractCreature owner, final int damage, final int energy) {
         this.name = TheWorksPower.NAME;
         this.ID = TheWorksPower.POWER_ID;
@@ -38,22 +34,22 @@ public class TheWorksPower extends AbstractPower implements CloneablePowerInterf
         this.damage = damage;
         this.energy = energy;
         this.updateDescription();
-        this.img = ImageMaster.loadImage("images/powers/32/drawCard.png");
+        this.img = ImageMaster.loadImage("replay/images/powers/drawCard.png");
         this.isActive = true;
     }
-    
+
     @Override
     public void updateDescription() {
         this.description = TheWorksPower.DESCRIPTIONS[0] + RESET_AMT + TheWorksPower.DESCRIPTIONS[1];
         for (int i = 0; i < this.energy; i++) {
-        	this.description += "[E]";
+            this.description += "[E]";
         }
         this.description += TheWorksPower.DESCRIPTIONS[2] + this.damage + TheWorksPower.DESCRIPTIONS[3];
     }
 
     @Override
     public void atEndOfRound() {
-    	AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
+        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
     }
 
     @Override
@@ -62,10 +58,10 @@ public class TheWorksPower extends AbstractPower implements CloneablePowerInterf
         this.damage += stackAmount;
         this.energy++;
     }
-    
+
     @Override
     public void onSpecificTrigger() {
-    	--this.amount;
+        --this.amount;
         if (this.amount == 0) {
             this.flash();
             this.amount = RESET_AMT;
@@ -74,15 +70,15 @@ public class TheWorksPower extends AbstractPower implements CloneablePowerInterf
         }
         this.updateDescription();
     }
-    
+
     static {
         powerStrings = CardCrawlGame.languagePack.getPowerStrings("The Works");
         NAME = TheWorksPower.powerStrings.NAME;
         DESCRIPTIONS = TheWorksPower.powerStrings.DESCRIPTIONS;
     }
 
-	@Override
-	public AbstractPower makeCopy() {
-		return new TheWorksPower(owner, damage, energy);
-	}
+    @Override
+    public AbstractPower makeCopy() {
+        return new TheWorksPower(owner, damage, energy);
+    }
 }

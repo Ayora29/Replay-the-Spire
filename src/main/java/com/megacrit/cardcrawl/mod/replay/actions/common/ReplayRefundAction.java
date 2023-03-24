@@ -12,8 +12,8 @@ import java.util.*;
 public class ReplayRefundAction extends AbstractGameAction
 {
 	private int energyGain;
-	private int energyCap;
-    private AbstractCard targetCard;
+	private final int energyCap;
+    private final AbstractCard targetCard;
     
     public ReplayRefundAction(final AbstractCard targetCard) {
 		this (targetCard, 999);

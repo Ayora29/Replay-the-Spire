@@ -16,7 +16,7 @@ import basemod.abstracts.CustomCard;
 public class RunicCopyCard 
 extends CustomCard
 {
-	private AbstractCard parentCard;
+	private final AbstractCard parentCard;
 
 	public RunicCopyCard(AbstractCard c)
 	{

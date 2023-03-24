@@ -1,45 +1,38 @@
 package com.megacrit.cardcrawl.mod.replay.cards.blue;
 
-import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.mod.replay.actions.*;
-import com.megacrit.cardcrawl.mod.replay.actions.unique.*;
-import com.megacrit.cardcrawl.mod.replay.cards.*;
-import com.megacrit.cardcrawl.mod.replay.monsters.*;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-//import com.megacrit.cardcrawl.cards.CardColor;
-//import com.megacrit.cardcrawl.cards.CardRarity;
-//import com.megacrit.cardcrawl.cards.CardTarget;
-//import com.megacrit.cardcrawl.cards.CardType;
-import com.megacrit.cardcrawl.characters.*;
-import com.megacrit.cardcrawl.dungeons.*;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.mod.replay.actions.unique.RNGOrbsAction;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class ReplayRNGCard extends AbstractCard
-{
+public class ReplayRNGCard extends CustomCard {
     public static final String ID = "ReplayRNGCard";
     private static final CardStrings cardStrings;
     public static final String NAME;
     public static final String DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION;
     private static final int COST = -1;
-    
+
     public ReplayRNGCard() {
-        super("ReplayRNGCard", ReplayRNGCard.NAME, "blue/skill/tempest", "blue/skill/tempest", -1, ReplayRNGCard.DESCRIPTION, CardType.SKILL, CardColor.BLUE, CardRarity.RARE, CardTarget.SELF);
+        super("ReplayRNGCard", ReplayRNGCard.NAME, "replay/images/cards/RNG.png", ReplayRNGCard.COST, ReplayRNGCard.DESCRIPTION, CardType.SKILL, CardColor.BLUE, CardRarity.RARE, CardTarget.SELF);
         this.showEvokeValue = true;
         this.showEvokeOrbCount = 3;
     }
-    
+
     @Override
     public void use(final AbstractPlayer p, final AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new RNGOrbsAction(p, this.energyOnUse, this.upgraded, this.freeToPlayOnce));
     }
-    
+
     @Override
     public AbstractCard makeCopy() {
         return new ReplayRNGCard();
     }
-    
+
     @Override
     public void upgrade() {
         if (!this.upgraded) {
@@ -48,7 +41,7 @@ public class ReplayRNGCard extends AbstractCard
             this.initializeDescription();
         }
     }
-    
+
     static {
         cardStrings = CardCrawlGame.languagePack.getCardStrings("ReplayRNGCard");
         NAME = ReplayRNGCard.cardStrings.NAME;

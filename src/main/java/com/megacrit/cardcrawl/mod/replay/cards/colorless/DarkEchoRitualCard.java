@@ -1,29 +1,16 @@
 package com.megacrit.cardcrawl.mod.replay.cards.colorless;
 
-import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.mod.replay.actions.*;
-import com.megacrit.cardcrawl.mod.replay.actions.common.*;
-import com.megacrit.cardcrawl.mod.replay.cards.*;
-import com.megacrit.cardcrawl.mod.replay.monsters.*;
-import com.megacrit.cardcrawl.mod.replay.vfx.*;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.characters.*;
-import com.megacrit.cardcrawl.dungeons.*;
-import com.megacrit.cardcrawl.vfx.combat.*;
+import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.*;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-//import com.megacrit.cardcrawl.cards.CardColor;
-//import com.megacrit.cardcrawl.cards.CardRarity;
-//import com.megacrit.cardcrawl.cards.CardTarget;
-//import com.megacrit.cardcrawl.cards.CardType;
-import com.megacrit.cardcrawl.core.*;
-import basemod.*;
-import basemod.abstracts.*;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class DarkEchoRitualCard extends CustomCard
-{
+public class DarkEchoRitualCard extends CustomCard {
     public static final String ID = "Dark Echo";
     private static final CardStrings cardStrings;
     public static final String NAME;
@@ -32,18 +19,18 @@ public class DarkEchoRitualCard extends CustomCard
     private static final int ATTACK_DMG = 7;
     private static final int HEAL_AMT = 2;
     private static final int POOL = 1;
-    
+
     public DarkEchoRitualCard() {
-        super("Dark Echo", DarkEchoRitualCard.NAME, "cards/replay/dark_echo.png", 1, DarkEchoRitualCard.DESCRIPTION, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
+        super("Dark Echo", DarkEchoRitualCard.NAME, "replay/images/cards/dark_echo.png", 1, DarkEchoRitualCard.DESCRIPTION, CardType.ATTACK, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
         this.baseDamage = 42;
         this.isMultiDamage = true;
     }
-    
+
     @Override
     public void use(final AbstractPlayer p, final AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
     }
-    
+
     @Override
     public void upgrade() {
         if (!this.upgraded) {
@@ -51,12 +38,12 @@ public class DarkEchoRitualCard extends CustomCard
             this.upgradeDamage(14);
         }
     }
-    
+
     @Override
     public AbstractCard makeCopy() {
         return new DarkEchoRitualCard();
     }
-    
+
     static {
         cardStrings = CardCrawlGame.languagePack.getCardStrings("Dark Echo");
         NAME = DarkEchoRitualCard.cardStrings.NAME;

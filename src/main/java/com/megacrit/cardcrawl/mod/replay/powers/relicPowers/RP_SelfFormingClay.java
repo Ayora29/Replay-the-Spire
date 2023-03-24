@@ -29,7 +29,7 @@ public class RP_SelfFormingClay extends AbstractPower
         this.owner = owner;
         this.amount = amount;
         this.updateDescription();
-        this.img = ImageMaster.loadImage("images/powers/32/malleable.png");
+        this.img = ImageMaster.loadImage("replay/images/powers/malleable.png");
     }
     
     @Override

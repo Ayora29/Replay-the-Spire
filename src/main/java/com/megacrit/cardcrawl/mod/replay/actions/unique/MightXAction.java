@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 public class MightXAction extends AbstractGameAction
 {
     private boolean freeToPlayOnce;
-    private AbstractPlayer p;
+    private final AbstractPlayer p;
     private int energyOnUse;
     
     public MightXAction(final AbstractPlayer p, final boolean freeToPlayOnce, final int energyOnUse) {

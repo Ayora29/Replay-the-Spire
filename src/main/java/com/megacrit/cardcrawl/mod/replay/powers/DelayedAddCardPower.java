@@ -23,7 +23,7 @@ public class DelayedAddCardPower extends AbstractPower implements CloneablePower
     private static final PowerStrings powerStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
-    private AbstractCard card;
+    private final AbstractCard card;
     private static int fedIDs = 0;
     
     public DelayedAddCardPower(final AbstractCreature owner, final int newAmount, final AbstractCard c) {

@@ -26,9 +26,9 @@ import com.megacrit.cardcrawl.core.*;
 
 public class ManyHandsAction extends AbstractGameAction
 {
-    private AbstractPlayer p;
-	private int energyOnUse;
-	private boolean freeToPlayOnce;
+    private final AbstractPlayer p;
+	private final int energyOnUse;
+	private final boolean freeToPlayOnce;
     
     public ManyHandsAction(final AbstractPlayer p, final boolean freeToPlayOnce, final int energyOnUse) {
         this.actionType = ActionType.SPECIAL;

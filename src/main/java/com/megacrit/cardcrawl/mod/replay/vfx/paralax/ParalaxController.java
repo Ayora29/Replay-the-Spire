@@ -6,9 +6,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ParalaxController {
-	private ArrayList<ArrayList<ParalaxObject>> objects;
+	private final ArrayList<ArrayList<ParalaxObject>> objects;
 	public float width;
-	private ArrayList<Float> levelSpeeds;
+	private final ArrayList<Float> levelSpeeds;
 	public boolean running;
 	
 	public ParalaxController(ArrayList<Float> levelSpeeds, float width) {

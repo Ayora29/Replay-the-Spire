@@ -19,9 +19,9 @@ public class MimicHandCardAction extends AbstractGameAction
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
     private static final float DURATION_PER_CARD = 0.25f;
-    private AbstractPlayer p;
-    private boolean isRandom;
-    private ArrayList<AbstractCard> cannotDuplicate;
+    private final AbstractPlayer p;
+    private final boolean isRandom;
+    private final ArrayList<AbstractCard> cannotDuplicate;
     
     public MimicHandCardAction(final AbstractCreature source, final boolean isRandom) {
         this.isRandom = isRandom;

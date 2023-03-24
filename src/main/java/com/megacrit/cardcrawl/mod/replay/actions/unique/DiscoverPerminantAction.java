@@ -19,8 +19,8 @@ public class DiscoverPerminantAction extends AbstractGameAction
 {
     private boolean retrieveCard;
     private CardType cardType;
-    private CardRarity cardRarity;
-    private CardColor cardColor;
+    private final CardRarity cardRarity;
+    private final CardColor cardColor;
 
     public DiscoverPerminantAction() {
         this(null, null, null);

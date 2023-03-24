@@ -1,76 +1,78 @@
 package com.megacrit.cardcrawl.mod.replay.relics;
 
-import com.megacrit.cardcrawl.dungeons.*;
-import com.megacrit.cardcrawl.relics.*;
-import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.*;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import replayTheSpire.ReplayAbstractRelic;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
-public class GuideBook extends AbstractRelic
-{
-    public static final String ID = "Guide Book";
+public class GuideBook extends ReplayAbstractRelic {
+    public static final String ID = "guide_book";
     private static final int CARD_AMT = 2;
-    
+
     public GuideBook() {
-        super("Guide Book", "guidebook.png", RelicTier.SHOP, LandingSound.FLAT);
+        super(ID, RelicTier.SHOP, LandingSound.FLAT);
     }
-    
+
     @Override
     public String getUpdatedDescription() {
         return this.DESCRIPTIONS[0] + GuideBook.CARD_AMT + this.DESCRIPTIONS[1];
     }
-    
+
     @Override
     public void onEquip() {
-        final ArrayList<AbstractCard> upgradableCards = new ArrayList<AbstractCard>();
+        final ArrayList<AbstractCard> upgradableCards = new ArrayList<>();
         for (final AbstractCard c : AbstractDungeon.player.masterDeck.group) {
             if (c.canUpgrade() && c.rarity == AbstractCard.CardRarity.RARE) {
                 upgradableCards.add(c);
             }
         }
-		if (upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT) {
-			for (final AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-				if (!(upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT)) {
-					break;
-				}
-				if (c.canUpgrade() && c.rarity == AbstractCard.CardRarity.UNCOMMON) {
-					upgradableCards.add(c);
-				}
-			}
-		}
-		if (upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT) {
-			for (final AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-				if (!(upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT)) {
-					break;
-				}
-				if (c.canUpgrade() && c.rarity == AbstractCard.CardRarity.SPECIAL) {
-					upgradableCards.add(c);
-				}
-			}
-		}
-		if (upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT) {
-			for (final AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-				if (!(upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT)) {
-					break;
-				}
-				if (c.canUpgrade() && c.rarity == AbstractCard.CardRarity.COMMON) {
-					upgradableCards.add(c);
-				}
-			}
-		}
-		if (upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT) {
-			for (final AbstractCard c : AbstractDungeon.player.masterDeck.group) {
-				if (!(upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT)) {
-					break;
-				}
-				if (c.canUpgrade() && c.rarity == AbstractCard.CardRarity.BASIC) {
-					upgradableCards.add(c);
-				}
-			}
-		}
+        if (upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT) {
+            for (final AbstractCard c : AbstractDungeon.player.masterDeck.group) {
+                if (!(upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT)) {
+                    break;
+                }
+                if (c.canUpgrade() && c.rarity == AbstractCard.CardRarity.UNCOMMON) {
+                    upgradableCards.add(c);
+                }
+            }
+        }
+        if (upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT) {
+            for (final AbstractCard c : AbstractDungeon.player.masterDeck.group) {
+                if (!(upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT)) {
+                    break;
+                }
+                if (c.canUpgrade() && c.rarity == AbstractCard.CardRarity.SPECIAL) {
+                    upgradableCards.add(c);
+                }
+            }
+        }
+        if (upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT) {
+            for (final AbstractCard c : AbstractDungeon.player.masterDeck.group) {
+                if (!(upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT)) {
+                    break;
+                }
+                if (c.canUpgrade() && c.rarity == AbstractCard.CardRarity.COMMON) {
+                    upgradableCards.add(c);
+                }
+            }
+        }
+        if (upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT) {
+            for (final AbstractCard c : AbstractDungeon.player.masterDeck.group) {
+                if (!(upgradableCards.isEmpty() || upgradableCards.size() < GuideBook.CARD_AMT)) {
+                    break;
+                }
+                if (c.canUpgrade() && c.rarity == AbstractCard.CardRarity.BASIC) {
+                    upgradableCards.add(c);
+                }
+            }
+        }
         Collections.shuffle(upgradableCards, new Random(AbstractDungeon.miscRng.randomLong()));
         if (!upgradableCards.isEmpty()) {
             if (upgradableCards.size() == 1) {
@@ -78,8 +80,7 @@ public class GuideBook extends AbstractRelic
                 AbstractDungeon.player.bottledCardUpgradeCheck(upgradableCards.get(0));
                 AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(upgradableCards.get(0).makeStatEquivalentCopy()));
                 AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect(Settings.WIDTH / 2.0f, Settings.HEIGHT / 2.0f));
-            }
-            else {
+            } else {
                 upgradableCards.get(0).upgrade();
                 upgradableCards.get(1).upgrade();
                 AbstractDungeon.player.bottledCardUpgradeCheck(upgradableCards.get(0));
@@ -90,14 +91,14 @@ public class GuideBook extends AbstractRelic
             }
         }
     }
-    
+
     @Override
     public AbstractRelic makeCopy() {
         return new GuideBook();
     }
-	
-	@Override
-	public int getPrice() {
-		return 150;
-	}
+
+    @Override
+    public int getPrice() {
+        return 150;
+    }
 }

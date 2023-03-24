@@ -37,8 +37,8 @@ public class GlassOrb extends AbstractOrb
     
     public GlassOrb() {
         if (GlassOrb.img1 == null) {
-            GlassOrb.img1 = ImageMaster.loadImage("images/orbs/replay/glass1.png");
-            GlassOrb.img2 = ImageMaster.loadImage("images/orbs/empty2.png");
+            GlassOrb.img1 = ImageMaster.loadImage("replay/images/orbs/replay/glass1.png");
+            GlassOrb.img2 = ImageMaster.loadImage("replay/images/orbs/empty2.png");
         }
         this.baseEvokeAmount = 3;
         this.evokeAmount = this.baseEvokeAmount;
@@ -57,7 +57,7 @@ public class GlassOrb extends AbstractOrb
     public void updateDescription() {
 		this.applyFocus();
 		if (AbstractDungeon.player.hasPower("Reflective Lens")) {
-			this.description = DESC[3] + Integer.toString(this.passiveAmount + AbstractDungeon.player.getPower("Reflective Lens").amount) + DESC[4];
+			this.description = DESC[3] + (this.passiveAmount + AbstractDungeon.player.getPower("Reflective Lens").amount) + DESC[4];
 		} else {
 			this.description = DESC[0];
 		}
@@ -125,7 +125,7 @@ public class GlassOrb extends AbstractOrb
 		if (AbstractDungeon.player.hasPower("Reflective Lens")) {
 			float speedTime = 0.6f / AbstractDungeon.player.orbs.size();
 			OrbFlareEffect orbEffect = new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING);
-			ReflectionHacks.setPrivate((Object)orbEffect, (Class)AbstractGameEffect.class, "color", (Object)(new Color(1.0f, 1.0f, 1.0f, 0.75f)));
+			ReflectionHacks.setPrivate(orbEffect, AbstractGameEffect.class, "color", new Color(1.0f, 1.0f, 1.0f, 0.75f));
 			AbstractDungeon.actionManager.addToBottom(new VFXAction(orbEffect, speedTime));
 			AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ReflectionPower(AbstractDungeon.player, AbstractDungeon.player.getPower("Reflective Lens").amount + this.passiveAmount), AbstractDungeon.player.getPower("Reflective Lens").amount + this.passiveAmount));
 		}

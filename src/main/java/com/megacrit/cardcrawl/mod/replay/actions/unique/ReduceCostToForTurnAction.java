@@ -15,10 +15,10 @@ public class ReduceCostToForTurnAction extends AbstractGameAction
 {
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
-    private AbstractPlayer p;
-    private ArrayList<AbstractCard> invalidCards;
+    private final AbstractPlayer p;
+    private final ArrayList<AbstractCard> invalidCards;
     private boolean isAll;
-    private AbstractCard.CardType typeRestriction;
+    private final AbstractCard.CardType typeRestriction;
     
     public ReduceCostToForTurnAction(final int amount) {
     	this(amount, false);

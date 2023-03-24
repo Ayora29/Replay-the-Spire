@@ -10,7 +10,7 @@ import java.util.*;
 
 public class LoomingThreatPowerAction extends AbstractGameAction
 {
-    private int damageAmount;
+    private final int damageAmount;
     
     public LoomingThreatPowerAction(final int damageAmount) {
         this.damageAmount = damageAmount;

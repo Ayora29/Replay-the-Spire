@@ -11,10 +11,10 @@ import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.vfx.combat.*;
 public class LimbFromLimbAction extends AbstractGameAction
 {
-    private int damageThreshold;
-    private DamageInfo info;
+    private final int damageThreshold;
+    private final DamageInfo info;
     private static final float DURATION = 0.1f;
-    private AbstractCard card;
+    private final AbstractCard card;
     
     public LimbFromLimbAction(final AbstractCreature target, final DamageInfo info, final AbstractCard card) {
         this.setValues(target, this.info = info);

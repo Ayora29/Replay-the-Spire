@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 public class EvokeSpecificOrbAction extends AbstractGameAction
 {
-    private AbstractOrb orb;
+    private final AbstractOrb orb;
     
     public EvokeSpecificOrbAction(final AbstractOrb orb) {
         this.duration = Settings.ACTION_DUR_FAST;
@@ -19,8 +19,7 @@ public class EvokeSpecificOrbAction extends AbstractGameAction
     public void update() {
         if (this.duration == Settings.ACTION_DUR_FAST) {
         	if (this.orb != null) {
-        		int slot = AbstractDungeon.player.orbs.indexOf(orb);
-            	AbstractDungeon.player.orbs.remove(slot);
+                AbstractDungeon.player.orbs.remove(orb);
             	AbstractDungeon.player.orbs.add(0, orb);
             	AbstractDungeon.player.evokeOrb();
         	}

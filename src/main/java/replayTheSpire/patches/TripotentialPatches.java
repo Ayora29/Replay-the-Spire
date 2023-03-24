@@ -41,7 +41,7 @@ public class TripotentialPatches {
 		
 		//@SpireInsertPatch(rloc = 56)
 		public static void PreviewCreation(GridCardSelectScreen _Instance) {
-			AbstractCard hoveredCard = (AbstractCard)ReflectionHacks.getPrivate((Object)_Instance, (Class)GridCardSelectScreen.class, "hoveredCard");
+			AbstractCard hoveredCard = ReflectionHacks.getPrivate(_Instance, GridCardSelectScreen.class, "hoveredCard");
 			if (hoveredCard != null && hoveredCard instanceof AbstractTripotentialCard) {
 				(upgradePreviewCardZero = (AbstractTripotentialCard)(hoveredCard.makeStatEquivalentCopy())).upgrade(0);
 				(upgradePreviewCardTwo = (AbstractTripotentialCard)(hoveredCard.makeStatEquivalentCopy())).upgrade(2);

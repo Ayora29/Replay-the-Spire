@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.core.*;
 public class ReplayRelicViewScrollPatch {
 	
 	public static void Postfix(RelicViewScreen __Instance) {
-		ReflectionHacks.setPrivate((Object)__Instance, (Class)RelicViewScreen.class, "scrollUpperBound", (Object)(2800.0f * Settings.scale));
+		ReflectionHacks.setPrivate(__Instance, RelicViewScreen.class, "scrollUpperBound", 2800.0f * Settings.scale);
 	}
 	
 }

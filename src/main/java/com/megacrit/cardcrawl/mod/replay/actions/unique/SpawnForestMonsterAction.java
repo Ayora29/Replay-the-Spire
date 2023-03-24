@@ -1,30 +1,25 @@
 package com.megacrit.cardcrawl.mod.replay.actions.unique;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-//import com.megacrit.cardcrawl.actions.ActionType;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.dungeons.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
-import com.megacrit.cardcrawl.mod.replay.actions.*;
-import com.megacrit.cardcrawl.mod.replay.monsters.*;
-import com.megacrit.cardcrawl.mod.replay.powers.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.SlowPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
-public class SpawnForestMonsterAction extends AbstractGameAction
-{
+public class SpawnForestMonsterAction extends AbstractGameAction {
     private boolean used;
     private static final float DURATION = 0.1f;
-    private AbstractMonster m;
-    private boolean minion;
-    private int targetSlot;
-    
+    private final AbstractMonster m;
+    private final boolean minion;
+    private final int targetSlot;
+
     public SpawnForestMonsterAction(final AbstractMonster m, final boolean isMinion) {
         this(m, isMinion, -99);
     }
-    
+
     public SpawnForestMonsterAction(final AbstractMonster m, final boolean isMinion, final int slot) {
         this.used = false;
         this.actionType = ActionType.SPECIAL;
@@ -36,7 +31,7 @@ public class SpawnForestMonsterAction extends AbstractGameAction
             m.addPower(new StrengthPower(m, 2));
         }
     }
-    
+
     @Override
     public void update() {
         if (!this.used) {
@@ -44,8 +39,7 @@ public class SpawnForestMonsterAction extends AbstractGameAction
             this.m.applyPowers();
             if (this.targetSlot < 0) {
                 AbstractDungeon.getCurrRoom().monsters.addSpawnedMonster(this.m);
-            }
-            else {
+            } else {
                 AbstractDungeon.getCurrRoom().monsters.addMonster(this.targetSlot, this.m);
             }
             this.m.showHealthBar();

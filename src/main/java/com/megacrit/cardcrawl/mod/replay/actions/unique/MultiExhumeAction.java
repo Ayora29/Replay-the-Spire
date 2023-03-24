@@ -20,10 +20,10 @@ import com.megacrit.cardcrawl.core.*;
 
 public class MultiExhumeAction extends AbstractGameAction
 {
-    private AbstractPlayer p;
+    private final AbstractPlayer p;
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
-    private ArrayList<AbstractCard> exhumes;
+    private final ArrayList<AbstractCard> exhumes;
     
     public MultiExhumeAction(final int amount) {
     	this.exhumes = new ArrayList<AbstractCard>();

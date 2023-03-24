@@ -26,7 +26,7 @@ public class RP_IncenseBurner extends AbstractPower
         this.owner = owner;
         this.amount = 6;
         this.updateDescription();
-        this.img = ImageMaster.loadImage("images/powers/32/ghost.png");
+        this.img = ImageMaster.loadImage("replay/images/powers/ghost.png");
     }
     
     @Override

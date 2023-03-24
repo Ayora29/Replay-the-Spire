@@ -1,59 +1,53 @@
 package com.megacrit.cardcrawl.mod.replay.relics;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import replayTheSpire.ReplayAbstractRelic;
 
 public class IronHammer
-  extends AbstractRelic
-{
-  private boolean firstTurn = false;
-  public static final String ID = "Iron Hammer";
-  
-  public IronHammer()
-  {
-    super("Iron Hammer", "ironHammer.png", AbstractRelic.RelicTier.UNCOMMON, AbstractRelic.LandingSound.HEAVY);
-  }
-  
-  public String getUpdatedDescription()
-  {
-    return this.DESCRIPTIONS[0];
-  }
-  
-  public void atPreBattle()
-  {
-    this.firstTurn = true;
-    if (!this.pulse)
-    {
-      beginPulse();
-      this.pulse = true;
+        extends ReplayAbstractRelic {
+    private boolean firstTurn = false;
+    public static final String ID = "iron_hammer";
+
+    public IronHammer() {
+        super(ID, AbstractRelic.RelicTier.UNCOMMON, AbstractRelic.LandingSound.HEAVY);
     }
-  }
-  
-  public void onPlayerEndTurn()
-  {
-    if (this.pulse)
-    {
-      this.pulse = false;
-      this.firstTurn = false;
+
+    @Override
+    public String getUpdatedDescription() {
+        return this.DESCRIPTIONS[0];
     }
-  }
-  public void onCardDraw(AbstractCard drawnCard) 
-  {
-	if (this.firstTurn)
-	{
-		if (drawnCard.canUpgrade())
-		  {
-			drawnCard.upgrade();
-			drawnCard.superFlash();
-			flash();
-		  }
-	}
-  }
-  public AbstractRelic makeCopy()
-  {
-    return new IronHammer();
-  }
+
+    @Override
+    public void atPreBattle() {
+        this.firstTurn = true;
+        if (!this.pulse) {
+            beginPulse();
+            this.pulse = true;
+        }
+    }
+
+    @Override
+    public void onPlayerEndTurn() {
+        if (this.pulse) {
+            this.pulse = false;
+            this.firstTurn = false;
+        }
+    }
+
+    @Override
+    public void onCardDraw(AbstractCard drawnCard) {
+        if (this.firstTurn) {
+            if (drawnCard.canUpgrade()) {
+                drawnCard.upgrade();
+                drawnCard.superFlash();
+                flash();
+            }
+        }
+    }
+
+    @Override
+    public AbstractRelic makeCopy() {
+        return new IronHammer();
+    }
 }

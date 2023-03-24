@@ -27,7 +27,7 @@ public class RP_OrichalcumPower extends AbstractPower
         this.owner = owner;
         this.amount = newAmount;
         this.updateDescription();
-        this.img = ImageMaster.loadImage("images/powers/32/malleable.png");
+        this.img = ImageMaster.loadImage("replay/images/powers/malleable.png");
     }
     
     @Override

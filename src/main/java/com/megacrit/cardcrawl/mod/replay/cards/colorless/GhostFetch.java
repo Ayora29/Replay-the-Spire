@@ -1,45 +1,34 @@
 package com.megacrit.cardcrawl.mod.replay.cards.colorless;
 
-import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.mod.replay.actions.*;
-import com.megacrit.cardcrawl.mod.replay.actions.unique.*;
-import com.megacrit.cardcrawl.mod.replay.actions.utility.*;
-import com.megacrit.cardcrawl.mod.replay.cards.*;
-import com.megacrit.cardcrawl.mod.replay.monsters.*;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.actions.utility.ExhaustAllEtherealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-//import com.megacrit.cardcrawl.cards.CardColor;
-//import com.megacrit.cardcrawl.cards.CardRarity;
-//import com.megacrit.cardcrawl.cards.CardTarget;
-//import com.megacrit.cardcrawl.cards.CardType;
-import com.megacrit.cardcrawl.characters.*;
-import com.megacrit.cardcrawl.dungeons.*;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.mod.replay.actions.unique.BasicFromDeckToHandAction;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import java.util.*;
-import com.megacrit.cardcrawl.core.*;
-
-public class GhostFetch extends AbstractCard
-{
+public class GhostFetch extends CustomCard {
     public static final String ID = "Ghost Fetch";
     private static final CardStrings cardStrings;
     public static final String NAME;
     public static final String DESCRIPTION;
     public static final String UPGRADE_DESCRIPTION;
     public static final String[] EXTENDED_DESCRIPTION;
-    private static final int POOL = 1;
-    
+
     public GhostFetch() {
-        super("Ghost Fetch", GhostFetch.NAME, "colorless/skill/goodInstincts", "colorless/skill/goodInstincts", 0, GhostFetch.DESCRIPTION, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.NONE);
+        super("Ghost Fetch", GhostFetch.NAME, "replay/images/cards/ghostfetch.png", 0, GhostFetch.DESCRIPTION, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.NONE);
         this.exhaust = true;
-		this.isEthereal = true;
+        this.isEthereal = true;
     }
-    
+
     @Override
     public void use(final AbstractPlayer p, final AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new BasicFromDeckToHandAction(1, this.upgraded));
     }
-    
+
     @Override
     public boolean canUse(final AbstractPlayer p, final AbstractMonster m) {
         boolean canUse = super.canUse(p, m);
@@ -58,18 +47,17 @@ public class GhostFetch extends AbstractCard
         }
         return canUse;
     }
-    
-	@Override
-	public void triggerOnEndOfPlayerTurn()
-	{
-		AbstractDungeon.actionManager.addToTop(new ExhaustAllEtherealAction());
-	}
-	
+
+    @Override
+    public void triggerOnEndOfPlayerTurn() {
+        AbstractDungeon.actionManager.addToTop(new ExhaustAllEtherealAction());
+    }
+
     @Override
     public AbstractCard makeCopy() {
         return new GhostFetch();
     }
-    
+
     @Override
     public void upgrade() {
         if (!this.upgraded) {
@@ -78,7 +66,7 @@ public class GhostFetch extends AbstractCard
             this.initializeDescription();
         }
     }
-    
+
     static {
         cardStrings = CardCrawlGame.languagePack.getCardStrings("Ghost Fetch");
         NAME = GhostFetch.cardStrings.NAME;

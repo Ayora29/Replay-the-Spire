@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.core.*;
 
 public class DefyDeathUpdateAction extends AbstractGameAction
 {
-    private DefyDeath card;
+    private final DefyDeath card;
     
     public DefyDeathUpdateAction(final DefyDeath c) {
         this.card = c;

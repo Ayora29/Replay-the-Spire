@@ -19,9 +19,9 @@ public class AbandonAction extends AbstractGameAction
 {
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
-    private AbstractPlayer p;
-    private boolean isRandom;
-    private boolean anyNumber;
+    private final AbstractPlayer p;
+    private final boolean isRandom;
+    private final boolean anyNumber;
     private boolean canPickZero;
     public static int numExhausted;
     /*

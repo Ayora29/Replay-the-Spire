@@ -27,7 +27,7 @@ public class StudyHecPower extends AbstractPower
         this.ID = POWER_ID;
         this.owner = owner;
         this.upgrade = upgrade;
-        this.img = new Texture("images/powers/32/ss_fish.png");
+        this.img = new Texture("replay/images/powers/ss_fish.png");
         this.amount = amount;
         this.updateDescription();
     }

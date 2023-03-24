@@ -17,11 +17,11 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 public class FromAllSidesAction extends AbstractGameAction
 {
     private boolean freeToPlayOnce;
-    private int damage;
-    private AbstractPlayer p;
-    private DamageInfo.DamageType damageTypeForTurn;
+    private final int damage;
+    private final AbstractPlayer p;
+    private final DamageInfo.DamageType damageTypeForTurn;
     private int energyOnUse;
-    private int bonus;
+    private final int bonus;
     
     public FromAllSidesAction(final AbstractPlayer p, final int damage, final DamageInfo.DamageType damageTypeForTurn, final boolean freeToPlayOnce, final int energyOnUse, final int bonus) {
         this.freeToPlayOnce = false;

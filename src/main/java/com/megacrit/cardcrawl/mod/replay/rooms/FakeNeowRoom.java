@@ -11,12 +11,12 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.EventRoom;
 
 public class FakeNeowRoom extends AbstractRoom {
-    private EventRoom fakeRoom;
+    private final EventRoom fakeRoom;
 
     public FakeNeowRoom()
     {
         phase = RoomPhase.EVENT;
-        this.setMapImg(ImageMaster.loadImage("images/ui/map/ALWAYS.png"), ImageMaster.loadImage("images/ui/map/ALWAYSOUTLINE.png"));
+        this.setMapImg(ImageMaster.loadImage("replay/images/ui/map/ALWAYS.png"), ImageMaster.loadImage("replay/images/ui/map/ALWAYSOUTLINE.png"));
         this.setMapSymbol("WH");
 
         fakeRoom = new EventRoom();

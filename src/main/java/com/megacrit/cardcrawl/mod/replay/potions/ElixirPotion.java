@@ -43,16 +43,16 @@ public class ElixirPotion
     this.tips.add(new PowerTip(this.name, this.description));
     this.tips.add(new PowerTip(
     
-      TipHelper.capitalize(GameDictionary.EXHAUST.NAMES[0]), 
-      (String)GameDictionary.keywords.get(GameDictionary.EXHAUST.NAMES[0])));
+      TipHelper.capitalize(GameDictionary.EXHAUST.NAMES[0]),
+			GameDictionary.keywords.get(GameDictionary.EXHAUST.NAMES[0])));
     this.tips.add(new PowerTip(
     
-      TipHelper.capitalize(GameDictionary.STATUS.NAMES[0]), 
-      (String)GameDictionary.keywords.get(GameDictionary.STATUS.NAMES[0])));
+      TipHelper.capitalize(GameDictionary.STATUS.NAMES[0]),
+			GameDictionary.keywords.get(GameDictionary.STATUS.NAMES[0])));
     this.tips.add(new PowerTip(
     
-      TipHelper.capitalize(GameDictionary.CURSE.NAMES[0]), 
-      (String)GameDictionary.keywords.get(GameDictionary.CURSE.NAMES[0])));
+      TipHelper.capitalize(GameDictionary.CURSE.NAMES[0]),
+			GameDictionary.keywords.get(GameDictionary.CURSE.NAMES[0])));
 	//this.rarity = AbstractPotion.PotionRarity.SHOP;
   }
   

@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.core.*;
 
 public class RitualComponentAction extends AbstractGameAction
 {
-	private int dmg;
+	private final int dmg;
     
     public RitualComponentAction(final int dmg) {
         this.duration = 0.0f;

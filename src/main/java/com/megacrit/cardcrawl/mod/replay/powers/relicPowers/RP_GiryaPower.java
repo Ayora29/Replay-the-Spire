@@ -25,7 +25,7 @@ public class RP_GiryaPower extends AbstractPower
         this.owner = owner;
         this.amount = 3;
         this.updateDescription();
-        this.img = ImageMaster.loadImage("images/powers/32/formOfBull.png");
+        this.img = ImageMaster.loadImage("replay/images/powers/formOfBull.png");
         //this.loadRegion("unawakened");
     }
     

@@ -1,43 +1,34 @@
 package com.megacrit.cardcrawl.mod.replay.orbs;
 
-import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.mod.replay.actions.*;
-import com.megacrit.cardcrawl.mod.replay.actions.common.*;
-import com.megacrit.cardcrawl.mod.replay.actions.defect.*;
-import com.megacrit.cardcrawl.mod.replay.actions.utility.*;
-import com.megacrit.cardcrawl.mod.replay.cards.*;
-import com.megacrit.cardcrawl.mod.replay.monsters.*;
-import com.megacrit.cardcrawl.mod.replay.vfx.*;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.helpers.*;
-import com.badlogic.gdx.math.*;
-import com.megacrit.cardcrawl.dungeons.*;
-import com.megacrit.cardcrawl.actions.animations.*;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.localization.OrbStrings;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.RegenPower;
+import com.megacrit.cardcrawl.vfx.combat.LightningOrbActivateEffect;
+import com.megacrit.cardcrawl.vfx.combat.LightningOrbPassiveEffect;
 
-import java.util.*;
-import com.megacrit.cardcrawl.core.*;
-import com.badlogic.gdx.*;
-import com.megacrit.cardcrawl.vfx.combat.*;
-import com.badlogic.gdx.graphics.g2d.*;
-import com.badlogic.gdx.graphics.*;
-
-public class ReplayLightOrb extends AbstractOrb
-{
+public class ReplayLightOrb extends AbstractOrb {
     public static final String ORB_ID = "ReplayLightOrb";
     private static final OrbStrings orbString;
     public static final String[] DESC;
     private float vfxTimer;
-    private float vfxIntervalMin;
-    private float vfxIntervalMax;
+    private final float vfxIntervalMin;
+    private final float vfxIntervalMax;
     private static final float PI_DIV_16 = 0.19634955f;
     private static final float ORB_WAVY_DIST = 0.05f;
     private static final float PI_4 = 12.566371f;
     private static final float ORB_BORDER_SCALE = 1.2f;
-	public static Texture ORB_TEXTURE = ImageMaster.loadImage("images/orbs/replay/light.png");
-    
+    public static Texture ORB_TEXTURE = ImageMaster.loadImage("replay/images/orbs/replay/light.png");
+
     public ReplayLightOrb() {
         this.vfxTimer = 1.0f;
         this.vfxIntervalMin = 0.15f;
@@ -53,29 +44,29 @@ public class ReplayLightOrb extends AbstractOrb
         this.angle = MathUtils.random(360.0f);
         this.channelAnimTimer = 0.5f;
     }
-    
+
     @Override
     public void updateDescription() {
         this.applyFocus();
         this.description = ReplayLightOrb.DESC[0] + this.passiveAmount + ReplayLightOrb.DESC[1] + this.evokeAmount + ReplayLightOrb.DESC[2];
     }
-    
+
     @Override
     public void onEvoke() {
-    	AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RegenPower(AbstractDungeon.player, this.evokeAmount), this.evokeAmount));
+        AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RegenPower(AbstractDungeon.player, this.evokeAmount), this.evokeAmount));
     }
-    
+
     @Override
     public void onEndOfTurn() {
-    	AbstractDungeon.actionManager.addToBottom(new HealAction(AbstractDungeon.player, AbstractDungeon.player, this.passiveAmount));
+        AbstractDungeon.actionManager.addToBottom(new HealAction(AbstractDungeon.player, AbstractDungeon.player, this.passiveAmount));
     }
-    
+
     @Override
     public void triggerEvokeAnimation() {
         CardCrawlGame.sound.play("ORB_PLASMA_EVOKE", 0.1f);
         AbstractDungeon.effectsQueue.add(new LightningOrbActivateEffect(this.cX, this.cY));
     }
-    
+
     @Override
     public void updateAnimation() {
         super.updateAnimation();
@@ -89,7 +80,7 @@ public class ReplayLightOrb extends AbstractOrb
             this.vfxTimer = MathUtils.random(this.vfxIntervalMin, this.vfxIntervalMax);
         }
     }
-    
+
     @Override
     public void render(final SpriteBatch sb) {
         sb.setColor(new Color(1.0f, 1.0f, 1.0f, this.c.a / 2.0f));
@@ -103,17 +94,17 @@ public class ReplayLightOrb extends AbstractOrb
         this.renderText(sb);
         this.hb.render(sb);
     }
-    
+
     @Override
     public void playChannelSFX() {
         CardCrawlGame.sound.play("ORB_PLASMA_CHANNEL", 0.1f);
     }
-    
+
     @Override
     public AbstractOrb makeCopy() {
         return new ReplayLightOrb();
     }
-    
+
     static {
         orbString = CardCrawlGame.languagePack.getOrbString("Light");
         DESC = ReplayLightOrb.orbString.DESCRIPTION;

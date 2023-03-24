@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.dungeons.*;
 
 public class EclipseAction extends AbstractGameAction
 {
-    private int refund;
-    private float startingDuration;
+    private final int refund;
+    private final float startingDuration;
     
     public EclipseAction(final AbstractCreature target, final int refund) {
         this.setValues(target, target);

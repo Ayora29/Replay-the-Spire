@@ -25,14 +25,14 @@ public class PlayerGainPennyEffect extends AbstractGameEffect
     private float y;
     private float vX;
     private float vY;
-    private float targetX;
-    private float targetY;
-    private TextureAtlas.AtlasRegion img;
+    private final float targetX;
+    private final float targetY;
+    private final TextureAtlas.AtlasRegion img;
     private float alpha;
     private float suctionTimer;
     private float staggerTimer;
-    private boolean showGainEffect;
-    private AbstractCreature owner;
+    private final boolean showGainEffect;
+    private final AbstractCreature owner;
     
     public PlayerGainPennyEffect(final AbstractCreature owner, final float x, final float y, final float targetX, final float targetY, final boolean showGainEffect) {
         this.alpha = 0.0f;

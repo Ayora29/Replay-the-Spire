@@ -63,7 +63,7 @@ public class ReplayOrbIntPatch {
 		public static void Postfix(AbstractOrb __Instance) {
 			final AbstractPower power = AbstractDungeon.player.getPower("Focus");
 	        if (power == null) {
-				final int basePassiveAmount = (int)ReflectionHacks.getPrivate((Object)__Instance, (Class)AbstractOrb.class, "basePassiveAmount");
+				final int basePassiveAmount = ReflectionHacks.getPrivate(__Instance, AbstractOrb.class, "basePassiveAmount");
 	            __Instance.passiveAmount = Math.max(0, basePassiveAmount);
 	        }
 			int mypos = AbstractDungeon.player.orbs.indexOf(__Instance);

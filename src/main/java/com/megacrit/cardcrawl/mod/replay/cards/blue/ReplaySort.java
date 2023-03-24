@@ -1,27 +1,20 @@
 package com.megacrit.cardcrawl.mod.replay.cards.blue;
 
-import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.mod.replay.actions.*;
-import com.megacrit.cardcrawl.mod.replay.actions.common.*;
-import com.megacrit.cardcrawl.mod.replay.actions.unique.*;
-import com.megacrit.cardcrawl.mod.replay.cards.*;
-import com.megacrit.cardcrawl.mod.replay.monsters.*;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import basemod.abstracts.CustomCard;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AlwaysRetainField;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.ShuffleAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-//import com.megacrit.cardcrawl.cards.CardColor;
-//import com.megacrit.cardcrawl.cards.CardRarity;
-//import com.megacrit.cardcrawl.cards.CardTarget;
-//import com.megacrit.cardcrawl.cards.CardType;
-import com.megacrit.cardcrawl.characters.*;
-import com.megacrit.cardcrawl.dungeons.*;
-import com.megacrit.cardcrawl.core.*;
-import basemod.abstracts.*;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.mod.replay.actions.common.ChooseAction;
+import com.megacrit.cardcrawl.mod.replay.actions.unique.ShuffleNonStatusAction;
+import com.megacrit.cardcrawl.mod.replay.actions.unique.ShuffleRareAction;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class ReplaySort extends CustomCard
-{
+public class ReplaySort extends CustomCard {
     public static final String ID = "ReplaySort";
     private static final CardStrings cardStrings;
     public static final String NAME;
@@ -29,40 +22,40 @@ public class ReplaySort extends CustomCard
     public static final String UPGRADE_DESCRIPTION;
     public static final String[] EXTENDED_DESCRIPTION;
     private static final int COST = 1;
-    
+
     public ReplaySort() {
-        super("ReplaySort", ReplaySort.NAME, "cards/replay/sort.png", ReplaySort.COST, ReplaySort.DESCRIPTION, CardType.SKILL, CardColor.BLUE, CardRarity.UNCOMMON, CardTarget.NONE);
-		this.baseMagicNumber = 2;
+        super("ReplaySort", ReplaySort.NAME, "replay/images/cards/sort.png", ReplaySort.COST, ReplaySort.DESCRIPTION, CardType.SKILL, CardColor.BLUE, CardRarity.UNCOMMON, CardTarget.NONE);
+        this.baseMagicNumber = 2;
         this.magicNumber = this.baseMagicNumber;
     }
-	
+
     @Override
     public void use(final AbstractPlayer p, final AbstractMonster m) {
-    	final ChooseAction choice = new ChooseAction((AbstractCard)this, m, EXTENDED_DESCRIPTION[0]);
-    	choice.add(EXTENDED_DESCRIPTION[1], EXTENDED_DESCRIPTION[2], () -> {
-    		AbstractDungeon.actionManager.addToBottom(new ShuffleRareAction());
-    		AbstractDungeon.actionManager.addToBottom(new ShuffleAction(AbstractDungeon.player.drawPile, false));
-    		AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, this.magicNumber));
+        final ChooseAction choice = new ChooseAction(this, m, EXTENDED_DESCRIPTION[0]);
+        choice.add(EXTENDED_DESCRIPTION[1], EXTENDED_DESCRIPTION[2], () -> {
+            AbstractDungeon.actionManager.addToBottom(new ShuffleRareAction());
+            AbstractDungeon.actionManager.addToBottom(new ShuffleAction(AbstractDungeon.player.drawPile, false));
+            AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, this.magicNumber));
             return;
         });
-    	choice.add(EXTENDED_DESCRIPTION[3], EXTENDED_DESCRIPTION[4], () -> {
-    		AbstractDungeon.actionManager.addToBottom(new ShuffleNonStatusAction());
-    		AbstractDungeon.actionManager.addToBottom(new ShuffleAction(AbstractDungeon.player.drawPile, false));
-    		AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, this.magicNumber));
+        choice.add(EXTENDED_DESCRIPTION[3], EXTENDED_DESCRIPTION[4], () -> {
+            AbstractDungeon.actionManager.addToBottom(new ShuffleNonStatusAction());
+            AbstractDungeon.actionManager.addToBottom(new ShuffleAction(AbstractDungeon.player.drawPile, false));
+            AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, this.magicNumber));
             return;
         });
-    	AbstractDungeon.actionManager.addToBottom(choice);
+        AbstractDungeon.actionManager.addToBottom(choice);
     }
-    
+
     @Override
     public AbstractCard makeCopy() {
         return new ReplaySort();
     }
-    
+
     @Override
     public void upgrade() {
         if (!this.upgraded) {
-			//this.upgradeMagicNumber(1);
+            //this.upgradeMagicNumber(1);
             this.upgradeName();
             this.retain = true;
             AlwaysRetainField.alwaysRetain.set(this, true);
@@ -70,7 +63,7 @@ public class ReplaySort extends CustomCard
             this.initializeDescription();
         }
     }
-    
+
     static {
         cardStrings = CardCrawlGame.languagePack.getCardStrings("ReplaySort");
         NAME = ReplaySort.cardStrings.NAME;

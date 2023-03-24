@@ -12,7 +12,7 @@ import java.util.*;
 
 public class TimeBombAction extends AbstractGameAction
 {
-	private int amount;
+	private final int amount;
     public TimeBombAction(final int amount) {
         this.duration = Settings.ACTION_DUR_FAST;
 		this.amount = amount;

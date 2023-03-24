@@ -65,10 +65,8 @@ public class WhispersOfEvilPower extends AbstractPower implements CloneablePower
 	}
 	//ban certain types of curses
 	private boolean isCurseValid(AbstractCard card) {
-		if (FleetingField.fleeting.get(card) || SoulboundField.soulbound.get(card) || (AutoplayField.autoplay.get(card) && card.type != CardType.POWER) || card.cardID.equals("conspire:Blindness") || card.cardID.equals("hubris:Disease") || card.cardID.equals(LoomingEvil.ID))
-			return false;
-		return true;
-	}
+        return !FleetingField.fleeting.get(card) && !SoulboundField.soulbound.get(card) && (!AutoplayField.autoplay.get(card) || card.type == CardType.POWER) && !card.cardID.equals("conspire:Blindness") && !card.cardID.equals("hubris:Disease") && !card.cardID.equals(LoomingEvil.ID);
+    }
 	
 	@Override
 	public void atEndOfTurn(boolean isPlayer)

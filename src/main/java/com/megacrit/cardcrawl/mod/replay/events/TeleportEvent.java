@@ -23,10 +23,10 @@ public class TeleportEvent extends AbstractImageEvent
     public static final String[] DESCRIPTIONS;
     public static final String[] OPTIONS;
     private static final String DIALOG_1;
-    private CurScreen screen;
-	private MapRoomNode teleDest;
+    private final CurScreen screen;
+	private final MapRoomNode teleDest;
     public static boolean hasWarped = false;
-    private boolean warpedTo;
+    private final boolean warpedTo;
     public TeleportEvent(MapRoomNode teleDest) {
     	super(NAME, DIALOG_1, null);
     	this.screen = CurScreen.INTRO;
@@ -78,6 +78,6 @@ public class TeleportEvent extends AbstractImageEvent
     }
     private enum CurScreen
     {
-        INTRO;
+        INTRO
     }
 }

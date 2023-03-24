@@ -32,7 +32,7 @@ public class RP_LetterOpenerPower extends AbstractPower
         this.amount = 3;
 		this.damage = 5;
         this.updateDescription();
-        this.img = ImageMaster.loadImage("images/powers/32/riposte2.png");
+        this.img = ImageMaster.loadImage("replay/images/powers/riposte2.png");
     }
     
     @Override

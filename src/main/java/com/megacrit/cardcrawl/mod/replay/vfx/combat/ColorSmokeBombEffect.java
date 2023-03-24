@@ -9,9 +9,9 @@ import com.badlogic.gdx.graphics.g2d.*;
 
 public class ColorSmokeBombEffect extends AbstractGameEffect
 {
-    private float x;
-    private float y;
-    private Color color;
+    private final float x;
+    private final float y;
+    private final Color color;
     
     public ColorSmokeBombEffect(final float x, final float y, final Color color) {
         this.x = x;

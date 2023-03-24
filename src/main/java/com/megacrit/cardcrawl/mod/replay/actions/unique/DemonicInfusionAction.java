@@ -16,10 +16,10 @@ import com.megacrit.cardcrawl.core.*;
 
 public class DemonicInfusionAction extends AbstractGameAction
 {
-    private AbstractPlayer p;
-    private ArrayList<AbstractCard> cannotUpgrade;
-	private int energyOnUse;
-	private boolean freeToPlayOnce;
+    private final AbstractPlayer p;
+    private final ArrayList<AbstractCard> cannotUpgrade;
+	private final int energyOnUse;
+	private final boolean freeToPlayOnce;
 	private int upgraded;
     
     public DemonicInfusionAction(final AbstractPlayer p, final int upgraded, final boolean freeToPlayOnce, final int energyOnUse) {

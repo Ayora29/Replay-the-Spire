@@ -16,10 +16,10 @@ import com.megacrit.cardcrawl.core.*;
 
 public class RefundDrawAction extends AbstractGameAction
 {
-    private AbstractPlayer p;
-    private ArrayList<AbstractCard> cannotUpgrade;
-	private int energyOnUse;
-	private boolean freeToPlayOnce;
+    private final AbstractPlayer p;
+    private final ArrayList<AbstractCard> cannotUpgrade;
+	private final int energyOnUse;
+	private final boolean freeToPlayOnce;
 	private int refundAmount;
     
     public RefundDrawAction(final AbstractPlayer p, final int refundAmount, final boolean freeToPlayOnce, final int energyOnUse) {

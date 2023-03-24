@@ -19,7 +19,7 @@ public class TheDynamitePower extends TwoAmountPower implements CloneablePowerIn
     private static final PowerStrings powerStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
-    private AbstractCard card;
+    private final AbstractCard card;
     private static int bombIdOffset;
     
     public TheDynamitePower(final AbstractCreature owner, final int turns, final AbstractCard card) {

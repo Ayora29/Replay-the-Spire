@@ -17,8 +17,8 @@ import com.megacrit.cardcrawl.core.*;
 
 public class BasicFromDeckToHandAction extends AbstractGameAction
 {
-	private boolean isUpgraded;
-    private AbstractPlayer p;
+	private final boolean isUpgraded;
+    private final AbstractPlayer p;
     
     public BasicFromDeckToHandAction(final int amount, final boolean isUpgraded) {
         this.setValues(this.p = AbstractDungeon.player, AbstractDungeon.player, amount);

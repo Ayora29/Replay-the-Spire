@@ -1,32 +1,29 @@
 package com.megacrit.cardcrawl.mod.replay.actions.common;
 
-import com.megacrit.cardcrawl.actions.*;
-import com.megacrit.cardcrawl.cards.*;
-import com.megacrit.cardcrawl.unlock.*;
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.*;
-import gluttonmod.cards.*;
-import com.megacrit.cardcrawl.dungeons.*;
-import basemod.*;
-import com.megacrit.cardcrawl.actions.utility.*;
-import com.megacrit.cardcrawl.core.*;
-import com.badlogic.gdx.math.*;
-import com.megacrit.cardcrawl.vfx.cardManip.*;
+import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AlwaysRetainField;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 
-public class EchoToDrawAction extends AbstractGameAction
-{
+public class EchoToDrawAction extends AbstractGameAction {
     private static final float DURATION_PER_CARD = 0.35f;
-    private AbstractCard c;
+    private final AbstractCard c;
     private static final float PADDING;
-    private int discount;
-    
+    private final int discount;
+
     public EchoToDrawAction(final AbstractCard card) {
         this(card, 1, 0);
     }
-    
+
     public EchoToDrawAction(final AbstractCard card, final int amount) {
         this(card, amount, 0);
     }
-    
+
     public EchoToDrawAction(final AbstractCard card, final int amount, final int discount) {
         UnlockTracker.markCardAsSeen(card.cardID);
         this.amount = amount;
@@ -35,7 +32,7 @@ public class EchoToDrawAction extends AbstractGameAction
         this.c = card;
         this.discount = discount;
     }
-    
+
     private AbstractCard echoCard() {
         final AbstractCard card = this.c.makeStatEquivalentCopy();
         card.name = "Echo: " + card.name;
@@ -46,12 +43,9 @@ public class EchoToDrawAction extends AbstractGameAction
         if (card.cost >= 0 && this.discount > 0) {
             card.updateCost(-1 * this.discount);
         }
-        if (card instanceof AbstractGluttonCard) {
-            ((AbstractGluttonCard)card).onEchoed();
-        }
         return card;
     }
-    
+
     public void update() {
         if (this.amount == 0) {
             this.isDone = true;
@@ -63,7 +57,7 @@ public class EchoToDrawAction extends AbstractGameAction
         }
         this.isDone = true;
     }
-    
+
     private void addToDiscard() {
         switch (this.amount) {
             case 0: {
@@ -92,7 +86,7 @@ public class EchoToDrawAction extends AbstractGameAction
             }
         }
     }
-    
+
     static {
         PADDING = 25.0f * Settings.scale;
     }

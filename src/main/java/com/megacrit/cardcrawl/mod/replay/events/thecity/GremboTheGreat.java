@@ -1,51 +1,41 @@
 package com.megacrit.cardcrawl.mod.replay.events.thecity;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.mod.replay.cards.colorless.GrembosGang;
 import com.megacrit.cardcrawl.mod.replay.relics.GremlinFood;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-
 import replayTheSpire.ReplayTheSpireMod;
 
-public class GremboTheGreat extends AbstractImageEvent
-{
+public class GremboTheGreat extends AbstractImageEvent {
     public static final String ID = "Grembo";
     private static final EventStrings eventStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
     public static final String[] OPTIONS;
-    private static final String DIALOG_1;	
+    private static final String DIALOG_1;
     private static final String DIALOG_2;
     private CurScreen screen;
-    private AbstractCard card;
-    private AbstractRelic relic;
-    private int goldCost;
-	private boolean upgradeOption;
-    
+    private final AbstractCard card;
+    private final AbstractRelic relic;
+    private final int goldCost;
+    private boolean upgradeOption;
+
     public GremboTheGreat() {
-        super(GremboTheGreat.NAME, GremboTheGreat.DIALOG_1, "images/events/grembo.png");
+        super(GremboTheGreat.NAME, GremboTheGreat.DIALOG_1, "replay/images/events/grembo.png");
         this.screen = CurScreen.INTRO;
         this.card = new GrembosGang();
         this.relic = new GremlinFood();
         this.goldCost = 250;
         this.imageEventText.setDialogOption(GremboTheGreat.OPTIONS[0]);
     }
-    
+
     protected void buttonEffect(final int buttonPressed) {
         switch (this.screen) {
             case INTRO: {
@@ -53,15 +43,13 @@ public class GremboTheGreat extends AbstractImageEvent
                 this.imageEventText.updateBodyText(DIALOG_2);
                 this.imageEventText.clearAllDialogs();
                 if (AbstractDungeon.player.gold >= this.goldCost) {
-                	this.imageEventText.setDialogOption(OPTIONS[2] + this.goldCost + OPTIONS[3] + OPTIONS[4], this.card.makeStatEquivalentCopy());
-                }
-                else {
+                    this.imageEventText.setDialogOption(OPTIONS[2] + this.goldCost + OPTIONS[3] + OPTIONS[4], this.card.makeStatEquivalentCopy());
+                } else {
                     this.imageEventText.setDialogOption(OPTIONS[1] + this.goldCost + OPTIONS[3] + "]", true);
                 }
                 if (AbstractDungeon.player.hasRelic(this.relic.relicId)) {
-                	this.imageEventText.setDialogOption(OPTIONS[2] + this.relic.name + OPTIONS[4], this.card.makeStatEquivalentCopy());
-                }
-                else {
+                    this.imageEventText.setDialogOption(OPTIONS[2] + this.relic.name + OPTIONS[4], this.card.makeStatEquivalentCopy());
+                } else {
                     this.imageEventText.setDialogOption(OPTIONS[1] + this.relic.name + "]", true);
                 }
                 this.imageEventText.setDialogOption(OPTIONS[5]);
@@ -99,7 +87,7 @@ public class GremboTheGreat extends AbstractImageEvent
             }
         }
     }
-    
+
     static {
         eventStrings = CardCrawlGame.languagePack.getEventString("Grembo");
         NAME = eventStrings.NAME;
@@ -108,11 +96,10 @@ public class GremboTheGreat extends AbstractImageEvent
         DIALOG_1 = DESCRIPTIONS[0];
         DIALOG_2 = DESCRIPTIONS[1];
     }
-    
-    private enum CurScreen
-    {
-        INTRO, 
-        CHOICE, 
-        RESULT;
+
+    private enum CurScreen {
+        INTRO,
+        CHOICE,
+        RESULT
     }
 }

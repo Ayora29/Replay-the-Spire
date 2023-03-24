@@ -12,7 +12,7 @@ import replayTheSpire.patches.BottlePatches;
 
 public class FlurryBottleAction extends AbstractGameAction
 {
-    private BottledFlurry bottle;
+    private final BottledFlurry bottle;
     
     public FlurryBottleAction(final BottledFlurry bottle) {
         this.duration = Settings.ACTION_DUR_XFAST;
@@ -34,7 +34,7 @@ public class FlurryBottleAction extends AbstractGameAction
         }
         if (gotem) {
         	this.bottle.flash();
-        	AbstractDungeon.actionManager.addToTop((AbstractGameAction)new RelicAboveCreatureAction(AbstractDungeon.player, this.bottle));
+        	AbstractDungeon.actionManager.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this.bottle));
         }
         this.isDone = true;
     }

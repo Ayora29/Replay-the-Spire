@@ -12,7 +12,7 @@ import java.util.*;
 public class TriggerPassiveAction extends AbstractGameAction
 {
 	
-	private AbstractOrb targorb;
+	private final AbstractOrb targorb;
 	private int amount;
 	
 	

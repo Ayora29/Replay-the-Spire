@@ -19,10 +19,10 @@ import com.megacrit.cardcrawl.core.*;
 public class FIFOQ_Action extends AbstractGameAction
 {
     private boolean freeToPlayOnce;
-    private AbstractPlayer p;
+    private final AbstractPlayer p;
     private int energyOnUse;
-	private int slots;
-	private int bonus;
+	private final int slots;
+	private final int bonus;
     
     public FIFOQ_Action(final AbstractPlayer p, final int slots, final int bonus, final boolean freeToPlayOnce, final int energyOnUse) {
         this.freeToPlayOnce = false;

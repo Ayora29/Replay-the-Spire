@@ -9,8 +9,8 @@ import java.util.*;
 
 public class DiscardByTypeAction extends AbstractGameAction
 {
-	private AbstractCard.CardType cardType;
-	private boolean inverted;
+	private final AbstractCard.CardType cardType;
+	private final boolean inverted;
     public DiscardByTypeAction(final AbstractCreature source, final AbstractCard.CardType cardType, final int amount) {
     	this(source, cardType, amount, false);
     }

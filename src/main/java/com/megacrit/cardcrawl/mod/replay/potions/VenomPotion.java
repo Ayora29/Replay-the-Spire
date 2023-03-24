@@ -34,12 +34,12 @@ public class VenomPotion
     this.isThrown = false;
     this.tips.add(new PowerTip(this.name, this.description));
     this.tips.add(new PowerTip(
-      TipHelper.capitalize(GameDictionary.POISON.NAMES[0]), 
-      (String)GameDictionary.keywords.get(GameDictionary.POISON.NAMES[0])));
+      TipHelper.capitalize(GameDictionary.POISON.NAMES[0]),
+            GameDictionary.keywords.get(GameDictionary.POISON.NAMES[0])));
 	if (AbstractDungeon.ascensionLevel >= 11) {
 	  this.tips.add(new PowerTip(
-      TipHelper.capitalize(GameDictionary.STRENGTH.NAMES[0]), 
-      (String)GameDictionary.keywords.get(GameDictionary.STRENGTH.NAMES[0])));
+      TipHelper.capitalize(GameDictionary.STRENGTH.NAMES[0]),
+              GameDictionary.keywords.get(GameDictionary.STRENGTH.NAMES[0])));
 	}
 	//this.rarity = AbstractPotion.PotionRarity.UNCOMMON;
   }

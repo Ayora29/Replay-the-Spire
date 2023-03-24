@@ -25,7 +25,7 @@ public class RP_ThreadPower extends AbstractPower
         this.owner = owner;
         this.amount = 1;
         this.updateDescription();
-        this.img = ImageMaster.loadImage("images/powers/32/pointyEnd.png");
+        this.img = ImageMaster.loadImage("replay/images/powers/pointyEnd.png");
         //this.loadRegion("platedarmor");
     }
     

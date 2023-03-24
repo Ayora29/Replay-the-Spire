@@ -25,8 +25,8 @@ public class TPH_ConfusionPower extends AbstractPower
     public static final String[] DESCRIPTIONS;
     private boolean justApplied;
 	private int strengthMod;
-	private int lowerStrengthLimit;
-	private int upperStrengthLimit;
+	private final int lowerStrengthLimit;
+	private final int upperStrengthLimit;
     
     public TPH_ConfusionPower(final AbstractCreature owner) {
         this.name = ConfusionPower.NAME;

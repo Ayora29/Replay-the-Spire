@@ -27,14 +27,14 @@ public class ReplayOrbRenderTextPatch {
 	public static void Prefix(AbstractOrb __Instance, final SpriteBatch sb) {
 		ReplayOrbRenderTextPatch.forcingShowText = false;
 		if (__Instance != null && AbstractDungeon.player != null && !(__Instance instanceof EmptyOrbSlot) && !(__Instance instanceof GlassOrb)) {
-			final boolean showEvokeValue = (boolean)ReflectionHacks.getPrivate((Object)__Instance, (Class)AbstractOrb.class, "showEvokeValue");
+			final boolean showEvokeValue = ReflectionHacks.getPrivate(__Instance, AbstractOrb.class, "showEvokeValue");
 			if (!showEvokeValue && AbstractDungeon.player.orbs.get(AbstractDungeon.player.orbs.size() - 1) == __Instance) {
 				AbstractOrb nxrb = AbstractDungeon.player.orbs.get(0);
 				if (nxrb instanceof GlassOrb) {
-					final boolean showNxEvokeValue = (boolean)ReflectionHacks.getPrivate((Object)nxrb, (Class)AbstractOrb.class, "showEvokeValue");
+					final boolean showNxEvokeValue = ReflectionHacks.getPrivate(nxrb, AbstractOrb.class, "showEvokeValue");
 					//__Instance.showEvokeValue = true;
 					if (showNxEvokeValue) {
-						ReflectionHacks.setPrivate((Object)__Instance, (Class)AbstractOrb.class, "showEvokeValue", (Object)true);
+						ReflectionHacks.setPrivate(__Instance, AbstractOrb.class, "showEvokeValue", true);
 						ReplayOrbRenderTextPatch.forcingShowText = true;
 					}
 				}
@@ -44,7 +44,7 @@ public class ReplayOrbRenderTextPatch {
 	public static void Postfix(AbstractOrb __Instance, final SpriteBatch sb) {
 		if (__Instance != null && ReplayOrbRenderTextPatch.forcingShowText) {
 			//__Instance.showEvokeValue = false;
-			ReflectionHacks.setPrivate((Object)__Instance, (Class)AbstractOrb.class, "showEvokeValue", (Object)false);
+			ReflectionHacks.setPrivate(__Instance, AbstractOrb.class, "showEvokeValue", false);
 		}
 		ReplayOrbRenderTextPatch.forcingShowText = false;
 	}

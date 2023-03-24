@@ -15,9 +15,9 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 public class RNGOrbsAction extends AbstractGameAction
 {
     private boolean freeToPlayOnce;
-    private AbstractPlayer p;
+    private final AbstractPlayer p;
     private int energyOnUse;
-    private boolean upgraded;
+    private final boolean upgraded;
     
     public RNGOrbsAction(final AbstractPlayer p, final int energyOnUse, final boolean upgraded, final boolean freeToPlayOnce) {
         this.freeToPlayOnce = false;

@@ -64,10 +64,10 @@ public class TheJoustNewOption
             }
         }
         public static SpireReturn Prefix(final TheJoust __instance, final int buttonPressed) {
-        	if (ReflectionHacks.getPrivate((Object)__instance, (Class)TheJoust.class, "screen") == null) {
+        	if (ReflectionHacks.getPrivate(__instance, TheJoust.class, "screen") == null) {
         		AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
                 AbstractDungeon.dungeonMapScreen.open(false);
-        		return SpireReturn.Return((Object)null);
+        		return SpireReturn.Return(null);
         	}
             if (buttonPressed == 2 && AbstractDungeon.player.hasRelic(PetGhost.ID)) {
                 __instance.imageEventText.updateBodyText(TheJoustNewOption.eventStrings.DESCRIPTIONS[0]);
@@ -82,8 +82,8 @@ public class TheJoustNewOption
         		AbstractDungeon.combatRewardScreen.rewards.add(rewardCard);
         		AbstractDungeon.combatRewardScreen.positionRewards();
         		AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
-                ReflectionHacks.setPrivate((Object)__instance, (Class)TheJoust.class, "screen", (Object)null);
-                return SpireReturn.Return((Object)null);
+                ReflectionHacks.setPrivate(__instance, TheJoust.class, "screen", null);
+                return SpireReturn.Return(null);
             }
             return SpireReturn.Continue();
         }

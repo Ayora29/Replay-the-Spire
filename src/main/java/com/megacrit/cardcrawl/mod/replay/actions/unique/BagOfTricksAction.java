@@ -25,16 +25,16 @@ import com.megacrit.cardcrawl.core.*;
 
 public class BagOfTricksAction extends AbstractGameAction
 {
-    private AbstractPlayer p;
-    private AbstractMonster m;
-	private int energyOnUse;
-	private boolean freeToPlayOnce;
-	private AbstractCard card;
-	private int poison;
-	private int shivs;
-	private int block;
-	private int draw;
-	private int energyGain;
+    private final AbstractPlayer p;
+    private final AbstractMonster m;
+	private final int energyOnUse;
+	private final boolean freeToPlayOnce;
+	private final AbstractCard card;
+	private final int poison;
+	private final int shivs;
+	private final int block;
+	private final int draw;
+	private final int energyGain;
     
     public BagOfTricksAction(final AbstractPlayer p, final AbstractMonster m, final AbstractCard card, final int poison, final int shivs, final int block, final int draw, final int energyGain, final boolean freeToPlayOnce, final int energyOnUse) {
         this.actionType = ActionType.SPECIAL;
